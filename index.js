@@ -21,7 +21,7 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-    origin:["https://frozen-scrubland-02613.herokuapp.com/"],
+    origin:["http://localhost:3000"],
     credentials:true
 }));
 app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
