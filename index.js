@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cors({
     origin:[
       // "http://localhost:3000"
-    "https://frozen-scrubland-02613.herokuapp.com/"
+    "https://frozen-scrubland-02613.herokuapp.com"
   ],
     credentials:true
 }));
@@ -33,7 +33,7 @@ app.use('/',allRoutes);
 const server = db.sequelize.sync({ force:false}).then(function() {
 
   http.listen(PORT, function(){
-    console.log('listening on *:3002');
+    console.log('listening on *:' + PORT);
   });
 
   io.on('connection', function(socket){
