@@ -44,6 +44,23 @@ router.get('/Messages',function(req,res){
         res.send(DirectMessages)
     })
 })
+
+router.get('/Users',function(req,res){
+    db.User.findAll({}).then(function(AllUsers){
+        res.json(AllUsers)
+    }).catch(function(err){
+        res.json(err)
+    })
+})
+
+router.post('/PersonalChannels',function(req,res){
+    db.PersonalTopic.create({
+        id1: req.body.user,
+        id2: req.body.friend
+    }).then(function(newDmChannel){
+        res.json(newDmChannel)
+    })
+})
 // router.post('/GeneralTopics',function(req,res){
 //     console.log(req.body)
 //     res.json(req.body)

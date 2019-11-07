@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 
 //get route for secret clubhouse, if logged in will elt you in, otherwise will fail
 router.get('/secret', function (req, res) {
+    console.log('triggered')
     if (req.session.user) {
         res.status(200).send('secretssssssssssssss')
     } else {
@@ -65,6 +66,10 @@ router.get('/logout', function (req, res) {
 //developer route to see all the session variables.
 router.get('/readsessions', function (req, res) {
     res.json(req.session);
+})
+
+router.get('/', function (req, res) {
+    res.json('Hello World');
 })
 
 module.exports = router;

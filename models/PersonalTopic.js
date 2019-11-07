@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var PersonalTopic = sequelize.define('PersonalTopic', {
-        messages: DataTypes.STRING  
-        
+        id1: DataTypes.STRING,
+        id2: DataTypes.STRING,
         
     });
 

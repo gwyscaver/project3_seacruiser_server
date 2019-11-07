@@ -1,15 +1,15 @@
 require('dotenv').config()
 var express = require('express');
-var http = require('http').createServer(app);
 var session = require("express-session");
 const cors = require('cors');
-var io = require('socket.io')(http);
 var axios = require('axios');
 
 
 var PORT = process.env.PORT || 3002;
 
 var app = express();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
 //routing 
 
 var allRoutes = require('./controllers');
@@ -21,18 +21,17 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-    origin:["http://localhost:3000"],
+    origin:[
+      // "http://localhost:3000"
+    "https://frozen-scrubland-02613.herokuapp.com/"
+  ],
     credentials:true
 }));
 app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 app.use('/',allRoutes);
 
-
-
-
-
-
 const server = db.sequelize.sync({ force:false}).then(function() {
+
   http.listen(PORT, function(){
     console.log('listening on *:3002');
   });
@@ -64,9 +63,11 @@ const server = db.sequelize.sync({ force:false}).then(function() {
     socket.on('chatroom enter', function(chatroom){
       io.emit('chatroom enter', chatroom)
     })
+
+    socket.on('connection_failed', function(){
+      
+    })
   });
+  
 });
 
-app.listen(3003, function(){
-  console.log('listening on *:3002');
-});
