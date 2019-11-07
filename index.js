@@ -20,13 +20,11 @@ var db = require("./models");
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({
-    origin:[
+app.use(cors( 
       // "http://localhost:3000"
-    "https://frozen-scrubland-02613.herokuapp.com"
-  ],
-    credentials:true
-}));
+    // "https://frozen-scrubland-02613.herokuapp.com"
+
+));
 app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 app.use('/',allRoutes);
 
