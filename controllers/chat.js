@@ -55,12 +55,15 @@ router.get('/Users',function(req,res){
 
 router.post('/PersonalChannels',function(req,res){
     db.PersonalTopic.create({
-        id1: req.body.user,
-        id2: req.body.friend
+        id1: req.body.userId,
+        id2: req.body.friendId,
+        name1: req.body.userName,
+        name2: req.body.friendName
     }).then(function(newDmChannel){
         res.json(newDmChannel)
     })
 })
+
 // router.post('/GeneralTopics',function(req,res){
 //     console.log(req.body)
 //     res.json(req.body)

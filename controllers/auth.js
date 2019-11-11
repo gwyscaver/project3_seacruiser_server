@@ -58,9 +58,14 @@ router.post('/login', function (req, res) {
 
 router.get('/logout', function (req, res) {
     //delete session user, logging you out
-    req.session.destroy(function () {
-        res.send('successfully logged out')
+   
+    // (req.session.cookie.expires=Date.now())
+    // console.log(req.session);
+    //     res.cookie(req.session.cookie).json('hol up')
+    req.session.destroy(function(){
+        res.json('logged out')
     })
+        
 })
 
 //developer route to see all the session variables.

@@ -23,7 +23,8 @@ app.use(express.json());
 app.use(cors({
     origin:[
       // "http://localhost:3000"
-    "https://boiling-forest-49975.herokuapp.com"
+    // "https://boiling-forest-49975.herokuapp.com"
+    true
   ],
     credentials:true
 }));
@@ -62,6 +63,11 @@ const server = db.sequelize.sync({ force:false}).then(function() {
     });
     socket.on('chatroom enter', function(chatroom){
       io.emit('chatroom enter', chatroom)
+    })
+
+    socket.on('direct message room', function(chatroom){
+      console.log("chatroom", chatroom)
+      io.emit('direct message room', chatroom)
     })
 
     socket.on('connection_failed', function(){
